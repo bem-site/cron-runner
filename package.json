@@ -1,0 +1,42 @@
+{
+  "name": "cron-runner",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bem-site/cron-runner.git"
+  },
+  "author": "Andrey Kuznetsov <andrey.kuznetsov48@yandex.ua> (http://github.com/tormozz48)",
+  "maintainers": [
+    "Andrey Kuznetsov <andrey.kuznetsov48@yandex.ua> (http://github.com/tormozz48)"
+  ],
+  "contributors": [
+    "Andrey Kuznetsov <andrey.kuznetsov48@yandex.ua> (http://github.com/tormozz48)",
+    "Nikolay Ilchenko <tavria@yandex-team.ru> (http://github.com/tavriaforever)"
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "dependencies": {
+    "inherit": "^2.2.x",
+    "lodash": "^3.1.x",
+    "cron": "1.0.5"
+  },
+  "devDependencies": {
+    "mocha": "~2.2.x",
+    "mocha-lcov-reporter": "0.0.x",
+    "should": "~5.2.x",
+    "istanbul": "^0.3.x",
+    "jshint": "~2.6.x",
+    "jscs": "^1.11.x"
+  },
+  "scripts": {
+    "mocha": "NODE_ENV=testing node_modules/.bin/mocha",
+    "istanbul": "istanbul cover ./node_modules/mocha/bin/_mocha",
+    "codestyle": "node_modules/.bin/jshint . && node_modules/.bin/jscs -c .jscs.js .",
+    "cover": "istanbul cover _mocha",
+    "coveralls": "npm install coveralls && npm run cover && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
+    "test": "npm run coveralls"
+  },
+  "readmeFilename": "README.md",
+  "license": "MPL-2.0"
+}
