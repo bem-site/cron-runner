@@ -4,9 +4,15 @@ var inherit = require('inherit'),
 
 module.exports = inherit({
 
+    _STATE: {
+        IDLE: 0,
+        ACTIVE: 1
+    },
+
     _job: undefined,
     _options: undefined,
     _logger: undefined,
+    _state: undefined,
 
     /**
      * Constructor function
@@ -32,6 +38,8 @@ module.exports = inherit({
             throw new Error('Cron pattern was not set');
         }
 
+        this._state = this._STATE.IDLE;
+
         o.startImmediately = o.startImmediately || false;
         this._job = new CronJob({
             cronTime: o.pattern,
@@ -42,10 +50,37 @@ module.exports = inherit({
     },
 
     /**
+     * Switches state to IDLE state
+     * @returns {exports}
+     */
+    setIdle: function () {
+        this._state = this._STATE.IDLE;
+        return this;
+    },
+
+    /**
+     * Switches state to ACTIVE state
+     * @returns {exports}
+     */
+    setActive: function () {
+        this._state = this._STATE.ACTIVE;
+        return this;
+    },
+
+    /**
+     * Checks is current state is ACTIVE state
+     * @returns {boolean}
+     */
+    isActive: function () {
+        return this._state === this._STATE.ACTIVE;
+    },
+
+    /**
      * Method for cron script execution
      */
     execute: function () {
-        this._logger.info('cron runner start execution');
+        this._logger.info('cron runner start execute');
+        return true;
     },
 
     /**
