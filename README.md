@@ -8,6 +8,7 @@ Custom code execution periodically
 [![David](https://img.shields.io/david/bem-site/cron-runner.svg)](https://david-dm.org/bem-site/cron-runner)
 [![David](https://img.shields.io/david/dev/bem-site/cron-runner.svg)](https://david-dm.org/bem-site/cron-runner#info=devDependencies)
 
+![GitHub Logo](./logo.png)
 
 ## Usage
 
@@ -36,6 +37,30 @@ var mcr = new MyCronRunner({
 
 mcr.start();
 ```
+You can receive more details about cron patterns configuration [here](https://www.npmjs.com/package/cron).
+
+
+### API
+
+#### setIdle
+Switches state of runner to IDLE state. You can call it after your custom execution code for unlock
+next execution calls.
+
+#### setActive
+Switches state of runner to ACTIVE state. You can call it before your custom execution code for lock
+next execution calls if current execution has not performed yet.
+
+#### isActive
+Returns `true` if cron runner is in ACTIVE state. Otherwise returns `false`.
+
+#### execute
+Normally you should override this methods in you CronRunner inheritance and write your custom code
+
+#### start
+Performs start of running cron tasks.
+
+#### stop
+Performs stop of running cron tasks.
 
 ## Testing
 
