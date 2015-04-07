@@ -4,8 +4,7 @@ var should = require('should'),
 describe('bem-data-source', function () {
     var options = {
         cron: {
-            pattern: '0 */1 * * * *',
-            debug: true
+            pattern: '0 */1 * * * *'
         }
     };
 
@@ -29,8 +28,10 @@ describe('bem-data-source', function () {
             cr.should.be.ok;
             cr.should.have.property('_job');
             cr.should.have.property('_options');
+            cr.should.have.property('_logger');
 
             cr._options.should.be.ok;
+            cr._logger.should.be.ok;
             cr._job.should.be.ok;
         });
     });

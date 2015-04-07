@@ -17,9 +17,10 @@
     "node": ">= 0.8.0"
   },
   "dependencies": {
+    "bem-site-logger": "^0.0.x",
+    "cron": "1.0.5",
     "inherit": "^2.2.x",
-    "lodash": "^3.1.x",
-    "cron": "1.0.5"
+    "lodash": "^3.1.x"
   },
   "devDependencies": {
     "mocha": "~2.2.x",

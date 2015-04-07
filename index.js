@@ -1,10 +1,12 @@
 var inherit = require('inherit'),
+    Logger = require('bem-site-logger'),
     CronJob = require('cron').CronJob;
 
 module.exports = inherit({
 
     _job: undefined,
     _options: undefined,
+    _logger: undefined,
 
     /**
      * Constructor function
@@ -16,6 +18,7 @@ module.exports = inherit({
      */
     __constructor: function (options) {
         this._options = options;
+        this._logger = Logger.createLogger(module);
 
         if (!this._options) {
             throw new Error('Options were not set');
@@ -39,20 +42,10 @@ module.exports = inherit({
     },
 
     /**
-     * Optional logging if debug options is set to true
-     * @private
-     */
-    _log: function () {
-        if (this._options.cron.debug) {
-            console.log(arguments);
-        }
-    },
-
-    /**
      * Method for cron script execution
      */
     execute: function () {
-        console.log('execute');
+        this._logger.info('cron runner start execution');
     },
 
     /**
@@ -61,10 +54,12 @@ module.exports = inherit({
      */
     start: function () {
         if (!this._job) {
-            throw new Error('Cron job has\'t been initialized yet');
+            var error = new Error('Cron job has\'t been initialized yet');
+            this._logger.error(error.message);
+            throw error;
         }
 
-        this._log('Start cron job');
+        this._logger.info('Start cron job');
         this._job.start();
         return this;
     },
@@ -75,10 +70,12 @@ module.exports = inherit({
      */
     stop: function () {
         if (!this._job) {
-            throw new Error('Cron job has\'t been initialized yet');
+            var error = new Error('Cron job has\'t been initialized yet');
+            this._logger.error(error.message);
+            throw error;
         }
 
-        this._log('Stop cron job');
+        this._logger.info('Stop cron job');
         this._job.stop();
         return this;
     }
