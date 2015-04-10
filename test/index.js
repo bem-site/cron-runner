@@ -35,6 +35,19 @@ describe('bem-data-source', function () {
             cr._logger.should.be.ok;
             cr._job.should.be.ok;
         });
+
+        it ('should be initialized with string cron option', function () {
+            var options1 = { cron: '0 */1 * * * *' },
+                cr = new CronRunner(options1);
+            cr.should.be.ok;
+            cr.should.have.property('_job');
+            cr.should.have.property('_options');
+            cr.should.have.property('_logger');
+
+            cr._options.should.be.ok;
+            cr._logger.should.be.ok;
+            cr._job.should.be.ok;
+        })
     });
 
     describe('setIdle', function () {

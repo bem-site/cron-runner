@@ -24,7 +24,6 @@ module.exports = inherit({
      */
     __constructor: function (options) {
         this._options = options;
-        this._logger = Logger.createLogger(module);
 
         if (!this._options) {
             throw new Error('Options were not set');
@@ -34,10 +33,14 @@ module.exports = inherit({
         if (!o) {
             throw new Error('Cron options were not set');
         }
+
+        typeof o === 'string' && (o = { pattern: o });
+
         if (!o.pattern) {
             throw new Error('Cron pattern was not set');
         }
 
+        this._logger = Logger.setOptions(options['logger']).createLogger(module);
         this._state = this._STATE.IDLE;
 
         o.startImmediately = o.startImmediately || false;
