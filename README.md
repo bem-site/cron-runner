@@ -10,6 +10,8 @@ Custom code execution periodically
 
 ![GitHub Logo](./logo.png)
 
+[RUSSIAN DOCUMENTATION](./README.ru.md)
+
 ## Usage
 
 You should inherit from given module with help of [inherit](https://www.npmjs.com/package/inherit)
@@ -37,10 +39,18 @@ var mcr = new MyCronRunner({
 
 mcr.start();
 ```
-You can receive more details about cron patterns configuration [here](https://www.npmjs.com/package/cron).
-
 
 ### API
+
+#### constructor
+
+You should call constructor of cron-runner module with options object (required). 
+The fields of this object should be:
+
+* `cron` - simple string or object with field `cron` which contains cron pattern string value. 
+You can receive more details about cron patterns [here](https://www.npmjs.com/package/cron).
+* `logger` - logger configuration. This is optional configuration field for
+[logger](https://github.com/bem-site/logger) initialization.
 
 #### setIdle
 Switches state of runner to IDLE state. You can call it after your custom execution code for unlock
@@ -78,6 +88,11 @@ Run codestyle verification (jshint and jscs)
 ```
 npm run codestyle
 ```
+
+Special thanks to:
+
+* Nikolay Ilchenko (http://github.com/tavriaforever)
+* Konstantinova Gela (http://github.com/gela-d)
 
 Maintainer @tormozz48
 Please send your questions and proposals to: tormozz48@gmail.com
